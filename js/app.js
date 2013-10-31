@@ -6,4 +6,16 @@ jQuery(document).ready(function($){
 		else
 			$('body').animate({'left': '0%'});
 	});
+
+	$('#menu ul li').click(function(){
+
+		$('body').animate({'left': '0%'});
+
+		
+
+
+	});
+
+
+
 })
