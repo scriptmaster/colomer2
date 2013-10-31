@@ -12,6 +12,8 @@ jQuery(document).ready(function($){
 	$('#menu ul li').click(function(){
 		$('body').animate({'left': '0%'});
 	});
+	if(navigator.platform.substr(0, 3)=='Win')
+	   onDeviceReady()
 });
 
 
@@ -21,12 +23,14 @@ function shop_denmark() {
 	$('.page').hide();
 	$('#page_denmark').show();
 	$('#header h1').text("Shop N' Shop - Denmark");
+	page="denmark";
 }
 
 function shop_sweden() {
 	$('.page').hide();
 	$('#page_sweden').show();
 	$('#header h1').text("Shop N' Shop - Sweden");
+	page="sweden";
 }
 
 function show_contact() {
@@ -38,12 +42,32 @@ function show_contact() {
 
 
 
-var language;
+var language,page="denmark";
+
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-	checkStorage();
+	//checkStorage();
 	loadOffers();
+
+
+
+
+
+}
+
+
+function loadOffers(){
+	  $.getJSON('http://system-hostings.dev.wiredelta.com/colomer/api/offers/app_offers', function(resp){
+		  var offers = '';
+		  for(var i=0; i < resp.data.length; i++){
+		   	offers += '<li><img src="'+resp.data[i].image+'" /> <a href="'+resp.data[i].url+'" target="_system" >MERE INFO &raquo;</a> </li>';
+		  }
+		  $('#page_'+page+' .slider').html(offers);
+
+
+
+	})
 }
 
