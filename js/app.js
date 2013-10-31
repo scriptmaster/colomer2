@@ -1,3 +1,4 @@
+
 jQuery(document).ready(function($){
 
 	$('#header a').click(function(){
@@ -10,3 +11,17 @@ jQuery(document).ready(function($){
 });
 
 
+function shop_denmark() {
+	$('.page').hide();
+	$('#page_denmark').show();
+}
+
+function shop_sweden() {
+	$('.page').hide();
+	$('#page_sweden').show();
+}
+
+function shop_contact() {
+	$('.page').hide();
+	$('#page_contact').show();
+}

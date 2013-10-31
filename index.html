@@ -15,10 +15,10 @@
     <div id="splash">
     </div>
     <div id="menu">
-      <ul style="padding-left:10px;">
-        <li>SHOP N' SHOP DENMARK</li>
-        <li>SHOP N' SHOP SWEDEN</li>
-        <li>CONTACT</li>
+      <ul>
+        <li onclick="shop_denmark(); return false;">SHOP N' SHOP DENMARK</li>
+        <li onclick="shop_sweden(); return false;">SHOP N' SHOP SWEDEN</li>
+        <li onclick="show_contact(); return false;">CONTACT</li>
       </ul>
     </div>
     <div id="content">
@@ -26,7 +26,19 @@
         <a href="#menu"></a>
         <h1>TITLE</h1>
       </div>
-      <div id="inner-content"></div>
+      <div id="pages">
+        <div class="page" id="page_denmark">
+          DENMARK SLIDER
+          <ul class="slider"></ul>
+        </div>
+        <div class="page" id="page_sweden">
+          SWEDEN SLIDER
+          <ul class="slider"></ul>
+        </div>
+        <div class="page" id="page_contact">
+          <h2>Contact page</h2>
+        </div>
+      </div>
     </div>
 
     <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
