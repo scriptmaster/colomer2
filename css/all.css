@@ -1,4 +1,4 @@
-html {
+html, body {
 	overflow: hidden;
 }
 
@@ -31,7 +31,7 @@ body {
 	background: url('../images/menu_back.png') repeat;
 	width: 75%;
 	height: 100%;
-	left: -75%;
+	margin-left: -75%;
 }
 
 #menu ul {
@@ -144,6 +144,7 @@ body {
 	float: left;
 	width: 100%;
 	text-align: center;
+	overflow: hidden;
 }
 
 .slider li img {

@@ -4,18 +4,22 @@ jQuery(document).ready(function($){
 	   onDeviceReady()
 
 	$('#header span').click(function(){
+		/*
 		if(!parseInt($('body').css('left')))
 			$('body').animate({'left': '75%'});
 		else
 			$('body').animate({'left': '0%'});
+		*/
+		if(!parseInt($('#content').css('left')))
+			$('#menu,#content').animate({'left': '75%'});
+		else
+			$('#menu,#content').animate({'left': '0%'});
 	});
-
 
 	$('#menu ul li').click(function(){
-		$('body').css({'left': '0%'});
+		$('#menu,#content').css({'left': '0%'});
 	});
 });
-
 
 
 function shop_denmark() {
