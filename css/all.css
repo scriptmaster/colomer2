@@ -148,6 +148,12 @@ body {
 	position: absolute;
 	right: 5%;
 	bottom: 10%;
+	text-decoration: none;
+	background: rgba(0,0,0,0.6);
+	color: white;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 2px;
 }
 
 .slider-icons {
@@ -161,10 +167,11 @@ body {
 }
 
 .slider-icons.prev {
-	left: 3%;
+	left: 10px;
+	background-position: 0px 1px;
 }
 
 .slider-icons.next {
-	right: 3%;
-	background-position: -45px 0px;
+	right: 10px;
+	background-position: -42px 1px;
 }
