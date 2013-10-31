@@ -10,15 +10,8 @@ jQuery(document).ready(function($){
 
 
 	$('#menu ul li').click(function(){
-
 		$('body').animate({'left': '0%'});
-
-		
-
-
 	});
-
-
 });
 
 
