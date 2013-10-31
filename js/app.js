@@ -10,15 +10,8 @@ jQuery(document).ready(function($){
 
 
 	$('#menu ul li').click(function(){
-
 		$('body').animate({'left': '0%'});
-
-		
-
-
 	});
-
-
 });
 
 
@@ -27,13 +20,13 @@ jQuery(document).ready(function($){
 function shop_denmark() {
 	$('.page').hide();
 	$('#page_denmark').show();
-	$('#header h1').text("Shop N' Shop Denmark");
+	$('#header h1').text("Shop N' Shop - Denmark");
 }
 
 function shop_sweden() {
 	$('.page').hide();
 	$('#page_sweden').show();
-	$('#header h1').text("Shop N' Shop Sweden");
+	$('#header h1').text("Shop N' Shop - Sweden");
 }
 
 function show_contact() {
@@ -43,4 +36,14 @@ function show_contact() {
 }
 
 
+
+
+var language;
+
+document.addEventListener("deviceready", onDeviceReady, false);
+
+function onDeviceReady() {
+	checkStorage();
+	loadOffers();
+}
 

@@ -47,7 +47,6 @@ body {
 	font-family: "Myriad Pro", "lucida grande", Tahoma, Arial, sans-serif;
 	font-size: 14.4px;
 	cursor: pointer;
-
 }
 
 #menu ul li:active{
@@ -94,3 +93,40 @@ body {
 .page {
 	display: none;
 }
+
+
+
+
+/*Contact Page Styles Strarts Here*/
+.contactHeader{
+	font-family: "Myriad Pro", "lucida grande", Tahoma, Arial, sans-serif;
+	color: #e8125f;
+	font-size: 14px;
+	padding-top: 3%;
+	padding-left: 17%;
+
+}
+.countryHeader{
+	padding-top: 7%;
+	padding-left: 17%;
+
+}
+#page_contact ul {
+
+	padding-left: 17%;
+	line-height: 20px;
+}
+
+
+#page_contact ul li{
+
+	font-size: 12px;
+}
+
+.contactmeImage{
+	position: relative;
+	top:14px;
+	width:40px;
+	margin-right: 3%;
+}
+
