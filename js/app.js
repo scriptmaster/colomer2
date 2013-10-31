@@ -1,7 +1,7 @@
 
 jQuery(document).ready(function($){
 
-	$('#header a').click(function(){
+	$('#header span').click(function(){
 		if(!parseInt($('body').css('left')))
 			$('body').animate({'left': '75%'});
 		else

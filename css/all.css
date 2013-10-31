@@ -1,4 +1,4 @@
-html, body {
+html {
 	overflow: hidden;
 }
 
@@ -60,8 +60,9 @@ body {
 	height: 60px;
 }
 
-#header a {
+#header span {
 	display: block;
+	cursor: pointer;
 	float: left;
 	height: 60px;
 	width: 80px;
