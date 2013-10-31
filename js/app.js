@@ -1,5 +1,7 @@
 
 jQuery(document).ready(function($){
+	if(navigator.platform.substr(0, 3)=='Win')
+	   onDeviceReady()
 
 	$('#header span').click(function(){
 		if(!parseInt($('body').css('left')))
@@ -10,12 +12,9 @@ jQuery(document).ready(function($){
 
 
 	$('#menu ul li').click(function(){
-		$('body').animate({'left': '0%'});
+		$('body').css({'left': '0%'});
 	});
-	if(navigator.platform.substr(0, 3)=='Win')
-	   onDeviceReady()
 });
-
 
 
 
@@ -24,6 +23,7 @@ function shop_denmark() {
 	$('#page_denmark').show();
 	$('#header h1').text("Shop N' Shop - Denmark");
 	page="denmark";
+	loadOffers();
 }
 
 function shop_sweden() {
@@ -31,6 +31,7 @@ function shop_sweden() {
 	$('#page_sweden').show();
 	$('#header h1').text("Shop N' Shop - Sweden");
 	page="sweden";
+	loadOffers();
 }
 
 function show_contact() {
@@ -42,32 +43,90 @@ function show_contact() {
 
 
 
-var language,page="denmark";
+var language, page="denmark";
 
 
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-	//checkStorage();
-	loadOffers();
-
-
-
-
-
+	checkStorage();
+	// loadOffers();
 }
 
+function checkStorage() {
+	page = window.localStorage.getItem("page");
+	if(page == null) {
+		page = "denmark";
+		window.localStorage.setItem("page", page);
+	}
+	loadSplash();
+	var location = findLocation();
+}
 
 function loadOffers(){
-	  $.getJSON('http://system-hostings.dev.wiredelta.com/colomer/api/offers/app_offers', function(resp){
-		  var offers = '';
-		  for(var i=0; i < resp.data.length; i++){
-		   	offers += '<li><img src="'+resp.data[i].image+'" /> <a href="'+resp.data[i].url+'" target="_system" >MERE INFO &raquo;</a> </li>';
-		  }
-		  $('#page_'+page+' .slider').html(offers);
+	loadSplash();
+	$('.page').hide();
+	$.getJSON('http://system-hostings.dev.wiredelta.com/colomer/api/offers/app_offers?page='+page, function(resp){
+		var offers = '';
 
+		for(var i=0; i < resp.data.length; i++){
+			offers += '<li>';
+			offers += '<a href="'+resp.data[i].url+'" target="_system" >MERE INFO &raquo;</a>';
+			offers += '<img src="'+resp.data[i].image+'" />';
+			offers += '</li>';
+		}
 
+		setTimeout(function(){
 
+		$('#splash').hide();
+		$('#content,#page_'+page).show();
+		$('#page_'+page+' .slider').html(offers);
+
+		}, 200);
+		
 	})
 }
 
+function loadSplash(){
+	var sss = '';
+
+	if($(window).width() < 320){
+	    sss = 'res/screen/android/'+page+'/screen-ldpi-portrait.png';
+	}else if($(window).width() >= 320 || $(window).width() < 480){
+	    sss = 'res/screen/android/'+page+'/screen-mdpi-portrait.png';
+	}else if($(window).width() >= 480 || $(window).width() < 720){
+	    sss = 'res/screen/android/'+page+'/screen-hdpi-portrait.png';
+	}else if($(window).width() >= 720){
+	    sss = 'res/screen/android/'+page+'/screen-xhdpi-portrait.png';
+	}
+
+	var ss_image = '<img src="'+sss+'" width="'+$(window).width()+'" height="'+$(window).height()+'" />';
+	$('#splash').html(ss_image).show();
+}
+
+
+function findLocation() {
+	navigator.geolocation.getCurrentPosition(geoSuccess, geoFailure);
+}
+
+function geoSuccess(position) {
+	$.get('http://ws.geonames.org/countryCode?lat='+position.coords.latitude+'&lng='+position.coords.longitude,
+		function(data){
+			if(data == 'DK') {
+				window.localStorage.setItem("page", "denmark");
+				page='denmark';
+			}
+
+			loadOffers();
+		});
+}
+
+function geoFailure(err) {
+	if(err.message) {
+		alert('Please enable GPS');
+		page='denmark';
+		window.localStorage.setItem("page", "denmark");
+	}
+
+	loadOffers();
+}
