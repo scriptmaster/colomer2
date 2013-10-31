@@ -21,7 +21,7 @@ function shop_sweden() {
 	$('#page_sweden').show();
 }
 
-function shop_contact() {
+function show_contact() {
 	$('.page').hide();
 	$('#page_contact').show();
 }

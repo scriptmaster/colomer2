@@ -73,3 +73,7 @@ body {
 	padding-top: 15px;
 	text-align: center;
 }
+
+.page {
+	display: none;
+}
