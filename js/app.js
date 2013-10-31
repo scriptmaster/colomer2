@@ -8,7 +8,20 @@ jQuery(document).ready(function($){
 			$('body').animate({'left': '0%'});
 	});
 
+
+	$('#menu ul li').click(function(){
+
+		$('body').animate({'left': '0%'});
+
+		
+
+
+	});
+
+
 });
+
+
 
 
 function shop_denmark() {
@@ -28,3 +41,6 @@ function show_contact() {
 	$('#page_contact').show();
 	$('#header h1').text("Contact");
 }
+
+
+

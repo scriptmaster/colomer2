@@ -44,6 +44,14 @@ body {
 	border-top: 1px solid #555;
 	border-bottom: 1px solid #000;
 	/*background: url('../images/new_menu_li.png') no-repeat left;*/
+	font-family: "Myriad Pro";
+	font-size: 14.4px;
+	cursor: pointer;
+
+}
+
+#menu ul li:active{
+	background-color: #575757;
 }
 
 
@@ -69,6 +77,14 @@ body {
 	background: url('../images/menu.png') no-repeat 0px -15px;
 }
 
+.bulletimage{
+	position: relative;
+	top:4px;
+	margin-right: 10px;
+}
+
+
+
 #header h1 {
 	vertical-align: middle;
 	padding-top: 15px;
@@ -78,3 +94,4 @@ body {
 .page {
 	display: none;
 }
+
