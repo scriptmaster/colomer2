@@ -29,6 +29,9 @@ body {
 	position: absolute;
 	float: left;
 	background: url('../images/menu_back.png') repeat;
+
+
+	
 	width: 75%;
 	height: 100%;
 	margin-left: -75%;
@@ -36,8 +39,8 @@ body {
 
 #menu ul {
 	padding-top: 60px;	
-	background: url('../images/menu_head.png') no-repeat 15px 10px;
-	list-style-image:url('../images/Bullet.png');
+	
+	
 }
 
 #menu ul li {
@@ -46,7 +49,7 @@ body {
 	border-bottom: 1px solid #000;
 	/*background: url('../images/new_menu_li.png') no-repeat left;*/
 	font-family: "Myriad Pro", "lucida grande", Tahoma, Arial, sans-serif;
-	font-size: 14.4px;
+	font-size: 19.2px;
 	cursor: pointer;
 }
 
@@ -90,6 +93,7 @@ body {
 	vertical-align: middle;
 	padding-top: 15px;
 	text-align: center;
+	font-size: 19.2px;
 }
 
 .page {
