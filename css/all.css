@@ -94,7 +94,7 @@ body {
 	vertical-align: middle;
 	padding-top: 19px;
 	text-align: center;
-	font-size: 19.2px;
+	font-size: 17.2px;
 }
 
 .page {
@@ -108,7 +108,7 @@ body {
 .contactHeader{
 	font-family: "Myriad Pro", "lucida grande", Tahoma, Arial, sans-serif;
 	color: #e8125f;
-	font-size: 14px;
+	font-size: 19px;
 	padding-top: 3%;
 	padding-left: 17%;
 
@@ -116,6 +116,7 @@ body {
 .countryHeader{
 	padding-top: 7%;
 	padding-left: 17%;
+	color: #dfdfdf;
 
 }
 #page_contact ul {
@@ -209,4 +210,12 @@ body {
 
 .slider-nav-circle.current-slide {
 	background-color: #fff;
+}
+
+
+.countryHeader ul li{
+	text-decoration: none;
+	color: #dfdfdf;
+
+
 }
