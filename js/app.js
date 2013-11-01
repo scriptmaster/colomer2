@@ -76,10 +76,13 @@ function checkStorage() {
 }
 
 function loadOffers(){
+	var offers = '';
+
 	loadSplash();
+
 	$('.page').hide();
+
 	$.getJSON('http://system-hostings.dev.wiredelta.com/colomer/api/offers/app_offers?page='+page, function(resp){
-		var offers = '';
 
 		for(var i=0; i < resp.data.length; i++){
 			offers += '<li>';
@@ -88,13 +91,17 @@ function loadOffers(){
 			offers += '</li>';
 		}
 
+		hideSplash();
+	})
+	.error(hideSplash);
+
+	function hideSplash(){
 		setTimeout(function(){
 			$('#splash').hide();
 			$('#content,#page_'+page).show();
 			$('#page_'+page+' .slider').html(offers).wdSlider().fixImagesByHeight();
 		}, 1000);
-
-	})
+	}
 }
 
 function loadSplash(){
