@@ -62,6 +62,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 	checkStorage();
+	initPushNotifications();
 	// loadOffers();
 }
 
@@ -216,4 +217,79 @@ $.fn.fixImagesByHeight = function() {
 			$(this).css({width: nw, height: nh});
 		})
 	})
+}
+
+
+
+
+
+
+// var debug_level=1001;
+function initPushNotifications() {
+	if(localStorage.regid != null){
+		if(debug_level==1001) alert('already registered: '+localStorage.regid);
+		return;
+	}
+
+	if(!window.plugins) return;
+	var pushNotification = window.plugins.pushNotification;
+
+	if(device.platform.toLowerCase()=="android"){
+		pushNotification.register(gcmSuccess, regError, {"senderID":"811599554332","ecb":"onNotificationGCM"});
+	} else {
+		pushNotification.register(tokenHandler, regError, {alert:true, badge:true, sound: true, ecb: "onNotificationAPN"});
+	}
+}
+
+function onNotificationAPN(e){
+	console.log(e.event, e.message);
+}
+
+function tokenHandler(token) {
+	$.post('http://wiredelta.com:8085/store_apn_device_token.node',
+	{
+		name: device.platform+' '+device.version,
+		uuid: device.uuid,
+		token: token
+	},
+	function(){
+	    localStorage.regid = token;
+	});
+}
+
+function gcmSuccess(r) {
+	// alert('Callback Success! Result = '+r)
+}
+
+function regError(r) {
+	// alert('Callback Success! Result = '+r)
+}
+
+function onNotificationGCM(e) {
+    switch(e.event) {
+            case 'registered':
+                if(e.regid.length) {
+                    $.post("http://system-hostings.dev.wiredelta.com/colomer/api/offers/add_device",
+                    {
+                            name:		device.name,
+                            platform:	device.platform.toLowerCase(),
+                            uuid:		device.uuid,
+                            regid:		e.regid
+                    },
+                    function(data,status){
+                        localStorage.regid = e.regid;
+					});
+            	}
+            break;
+            case 'message':
+                // this is the actual push notification. its format depends on the data model from the push server
+                alert(e.message);
+            break;
+	        case 'error':
+                // alert('GCM error = '+e.msg);
+            break;
+            default:
+                alert('An unknown GCM event has occurred');
+            break;
+    }
 }
