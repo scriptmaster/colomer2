@@ -47,6 +47,7 @@ body {
 
 #menu ul li {
 	padding: 18px;
+	padding-left: 14px;
 	border-top: 1px solid #555;
 	border-bottom: 1px solid #000;
 	/*background: url('../images/listBackground.png') no-repeat left;*/
