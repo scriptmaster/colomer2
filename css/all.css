@@ -29,10 +29,11 @@ body {
 #menu {
 	position: absolute;
 	float: left;
-	background: url('../images/menu_back.png') repeat;
+	background: url('../images/background/backgroundeditednew1.png') repeat;
+		/*menu_back.png') repeat;*/
 
 
-	
+	/*background: rgba(100,100,100,0.1);*/
 	width: 75%;
 	height: 100%;
 	margin-left: -75%;
@@ -45,13 +46,14 @@ body {
 }
 
 #menu ul li {
-	padding: 15px;
+	padding: 18px;
 	border-top: 1px solid #555;
 	border-bottom: 1px solid #000;
-	/*background: url('../images/new_menu_li.png') no-repeat left;*/
+	/*background: url('../images/listBackground.png') no-repeat left;*/
 	font-family: "Myriad Pro", "lucida grande", Tahoma, Arial, sans-serif;
 	font-size: 19.2px;
 	cursor: pointer;
+	background: rgba(100,100,100,0.1);
 }
 
 #menu ul li:active{
@@ -80,6 +82,8 @@ body {
 	float: left;
 	height: 60px;
 	width: 80px;
+	position: relative;
+	z-index: 200;
 	/*background: url('../images/menu.png') no-repeat 0px -15px;*/
 }
 
@@ -92,10 +96,16 @@ body {
 
 
 #header h1 {
-	vertical-align: middle;
+	/*vertical-align: middle;*/
+	position: relative;
 	padding-top: 19px;
 	text-align: center;
+	/*width:69%;
+	left:12%;
+	*/
+	z-index: 50;
 	font-size: 17.2px;
+	left: -6%;
 }
 
 .page {
@@ -178,6 +188,7 @@ body {
 	width: 35px;
 	height: 33px;
 	background: url('../images/controls.png') no-repeat;
+	display: none;
 }
 
 .slider-icons.larrow {
