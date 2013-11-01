@@ -75,7 +75,7 @@ function loadOffers(){
 
 		for(var i=0; i < resp.data.length; i++){
 			offers += '<li>';
-			offers += '<a href="'+resp.data[i].url+'" target="_system" >MERE INFO &raquo;</a>';
+			offers += '<a href="#" onclick=window.open("'+resp.data[i].url+'") target="_system" >MERE INFO &raquo;</a>';
 			offers += '<img src="'+resp.data[i].image+'" />';
 			offers += '</li>';
 		}
