@@ -1,16 +1,9 @@
-
 jQuery(document).ready(function($){
 	if(navigator.platform.substr(0, 3)=='Win')
 	   onDeviceReady()
 
 	$('#header span').click(function(){
-		/*
-		if(!parseInt($('body').css('left')))
-			$('body').animate({'left': '75%'});
-		else
-			$('body').animate({'left': '0%'});
-		*/
-		if(!parseInt($('#content').css('left')))
+		if(parseInt($('#content').css('left')) == 0)
 			$('#menu,#content').animate({'left': '75%'});
 		else
 			$('#menu,#content').animate({'left': '0%'});
@@ -19,6 +12,21 @@ jQuery(document).ready(function($){
 	$('#menu ul li').click(function(){
 		$('#menu,#content').css({'left': '0%'});
 	});
+
+	$(document).on('swipeleft', function(){
+		if(parseInt($('#content').css('left')) > 0) {
+			$('#menu,#content').animate({'left': '0%'});
+		}
+	});
+
+	$('.slider').on('swipeleft', function(){
+		$('.larrow', $(this).parent()).click();
+	})
+
+	$('.slider').on('swiperight', function(){
+		$('.rarrow', $(this).parent()).click();
+	})
+
 });
 
 
@@ -81,13 +89,11 @@ function loadOffers(){
 		}
 
 		setTimeout(function(){
+			$('#splash').hide();
+			$('#content,#page_'+page).show();
+			$('#page_'+page+' .slider').html(offers).wdSlider().fixImagesByHeight();
+		}, 1000);
 
-		$('#splash').hide();
-		$('#content,#page_'+page).show();
-		$('#page_'+page+' .slider').html(offers).wdSlider().fixImagesByHeight();
-
-		}, 200);
-		
 	})
 }
 
@@ -122,7 +128,7 @@ function geoSuccess(position) {
 			}
 
 			loadOffers();
-		});
+		}).error(loadOffers);
 }
 
 function geoFailure(err) {
@@ -147,7 +153,9 @@ $.fn.wdSlider = function() {
 		$('.slider-icons', parent).unbind('click');
 
 		$('.larrow', parent).click(function(){
+			if($('li', self).is(':animated')) return false;
 			if(current >= total-1) return current=total-1;
+
 			current++;
 			$('li', self).animate({left: '-=100%'}, function(){
 				// if($(this).is(':first')) $('li:first', self).remove().appendTo(self);
@@ -155,17 +163,21 @@ $.fn.wdSlider = function() {
 			});
 		});
 		$('.rarrow', parent).click(function(){
+			if($('li', self).is(':animated')) return false;
 			if(current <= 0) return current=0;
+
 			current--;
 			$('li', self).animate({left: '+=100%'}, function(){
 				// $('li:last', self).remove().prependTo(self);
 				updateNavIcons();
 			});
 		});
+
 		var slider_nav_icons='';
 		for (var i = 0; i < total; i++) {
 			slider_nav_icons += '<span class="slider-nav-circle" />';
 		};
+
 		$('.slider-nav-icons', parent).html(slider_nav_icons)
 			.css('margin-left', -$('.slider-nav-icons', parent).outerWidth()/2)
 			.find('.slider-nav-circle:first').addClass('current-slide')
@@ -173,10 +185,12 @@ $.fn.wdSlider = function() {
 		$('.slider-nav-icons .slider-nav-circle', parent).click(function(){
 			// 
 		});
+
 		function updateNavIcons(){
 			$('.slider-nav-icons .slider-nav-circle', parent).removeClass('current-slide')
 					.filter(':eq('+current+')').addClass('current-slide')
 		}
+
 	});
 }
 
