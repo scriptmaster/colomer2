@@ -1,16 +1,9 @@
-
 jQuery(document).ready(function($){
 	if(navigator.platform.substr(0, 3)=='Win')
 	   onDeviceReady()
 
 	$('#header span').click(function(){
-		/*
-		if(!parseInt($('body').css('left')))
-			$('body').animate({'left': '75%'});
-		else
-			$('body').animate({'left': '0%'});
-		*/
-		if(!parseInt($('#content').css('left')))
+		if(parseInt($('#content').css('left')) == 0)
 			$('#menu,#content').animate({'left': '75%'});
 		else
 			$('#menu,#content').animate({'left': '0%'});
@@ -19,6 +12,21 @@ jQuery(document).ready(function($){
 	$('#menu ul li').click(function(){
 		$('#menu,#content').css({'left': '0%'});
 	});
+
+	$(document).on('swipeleft', function(){
+		if(parseInt($('#content').css('left')) > 0) {
+			$('#menu,#content').animate({'left': '0%'});
+		}
+	});
+
+	$('.slider').on('swipeleft', function(){
+		$('.larrow', $(this).parent()).click();
+	})
+
+	$('.slider').on('swiperight', function(){
+		$('.rarrow', $(this).parent()).click();
+	})
+
 });
 
 
@@ -54,6 +62,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
 	checkStorage();
+	initPushNotifications();
 	// loadOffers();
 }
 
@@ -68,10 +77,13 @@ function checkStorage() {
 }
 
 function loadOffers(){
+	var offers = '';
+
 	loadSplash();
+
 	$('.page').hide();
+
 	$.getJSON('http://system-hostings.dev.wiredelta.com/colomer/api/offers/app_offers?page='+page, function(resp){
-		var offers = '';
 
 		for(var i=0; i < resp.data.length; i++){
 			offers += '<li>';
@@ -80,15 +92,17 @@ function loadOffers(){
 			offers += '</li>';
 		}
 
-		setTimeout(function(){
-
-		$('#splash').hide();
-		$('#content,#page_'+page).show();
-		$('#page_'+page+' .slider').html(offers).wdSlider().fixImagesByHeight();
-
-		}, 200);
-		
+		hideSplash();
 	})
+	.error(hideSplash);
+
+	function hideSplash(){
+		setTimeout(function(){
+			$('#splash').hide();
+			$('#content,#page_'+page).show();
+			$('#page_'+page+' .slider').html(offers).wdSlider().fixImagesByHeight();
+		}, 1000);
+	}
 }
 
 function loadSplash(){
@@ -122,7 +136,7 @@ function geoSuccess(position) {
 			}
 
 			loadOffers();
-		});
+		}).error(loadOffers);
 }
 
 function geoFailure(err) {
@@ -147,7 +161,9 @@ $.fn.wdSlider = function() {
 		$('.slider-icons', parent).unbind('click');
 
 		$('.larrow', parent).click(function(){
+			if($('li', self).is(':animated')) return false;
 			if(current >= total-1) return current=total-1;
+
 			current++;
 			$('li', self).animate({left: '-=100%'}, function(){
 				// if($(this).is(':first')) $('li:first', self).remove().appendTo(self);
@@ -155,17 +171,21 @@ $.fn.wdSlider = function() {
 			});
 		});
 		$('.rarrow', parent).click(function(){
+			if($('li', self).is(':animated')) return false;
 			if(current <= 0) return current=0;
+
 			current--;
 			$('li', self).animate({left: '+=100%'}, function(){
 				// $('li:last', self).remove().prependTo(self);
 				updateNavIcons();
 			});
 		});
+
 		var slider_nav_icons='';
 		for (var i = 0; i < total; i++) {
 			slider_nav_icons += '<span class="slider-nav-circle" />';
 		};
+
 		$('.slider-nav-icons', parent).html(slider_nav_icons)
 			.css('margin-left', -$('.slider-nav-icons', parent).outerWidth()/2)
 			.find('.slider-nav-circle:first').addClass('current-slide')
@@ -173,10 +193,12 @@ $.fn.wdSlider = function() {
 		$('.slider-nav-icons .slider-nav-circle', parent).click(function(){
 			// 
 		});
+
 		function updateNavIcons(){
 			$('.slider-nav-icons .slider-nav-circle', parent).removeClass('current-slide')
 					.filter(':eq('+current+')').addClass('current-slide')
 		}
+
 	});
 }
 
@@ -195,4 +217,79 @@ $.fn.fixImagesByHeight = function() {
 			$(this).css({width: nw, height: nh});
 		})
 	})
+}
+
+
+
+
+
+
+// var debug_level=1001;
+function initPushNotifications() {
+	if(localStorage.regid != null){
+		if(debug_level==1001) alert('already registered: '+localStorage.regid);
+		return;
+	}
+
+	if(!window.plugins) return;
+	var pushNotification = window.plugins.pushNotification;
+
+	if(device.platform.toLowerCase()=="android"){
+		pushNotification.register(gcmSuccess, regError, {"senderID":"811599554332","ecb":"onNotificationGCM"});
+	} else {
+		pushNotification.register(tokenHandler, regError, {alert:true, badge:true, sound: true, ecb: "onNotificationAPN"});
+	}
+}
+
+function onNotificationAPN(e){
+	console.log(e.event, e.message);
+}
+
+function tokenHandler(token) {
+	$.post('http://wiredelta.com:8085/store_apn_device_token.node',
+	{
+		name: device.platform+' '+device.version,
+		uuid: device.uuid,
+		token: token
+	},
+	function(){
+	    localStorage.regid = token;
+	});
+}
+
+function gcmSuccess(r) {
+	// alert('Callback Success! Result = '+r)
+}
+
+function regError(r) {
+	// alert('Callback Success! Result = '+r)
+}
+
+function onNotificationGCM(e) {
+    switch(e.event) {
+            case 'registered':
+                if(e.regid.length) {
+                    $.post("http://system-hostings.dev.wiredelta.com/colomer/api/offers/add_device",
+                    {
+                            name:		device.name,
+                            platform:	device.platform.toLowerCase(),
+                            uuid:		device.uuid,
+                            regid:		e.regid
+                    },
+                    function(data,status){
+                        localStorage.regid = e.regid;
+					});
+            	}
+            break;
+            case 'message':
+                // this is the actual push notification. its format depends on the data model from the push server
+                alert(e.message);
+            break;
+	        case 'error':
+                // alert('GCM error = '+e.msg);
+            break;
+            default:
+                alert('An unknown GCM event has occurred');
+            break;
+    }
 }
