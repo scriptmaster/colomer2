@@ -84,7 +84,7 @@ function loadOffers(){
 
 		$('#splash').hide();
 		$('#content,#page_'+page).show();
-		$('#page_'+page+' .slider').html(offers).wdSlider();
+		$('#page_'+page+' .slider').html(offers).wdSlider().fixImagesByHeight();
 
 		}, 200);
 		
@@ -178,4 +178,21 @@ $.fn.wdSlider = function() {
 					.filter(':eq('+current+')').addClass('current-slide')
 		}
 	});
+}
+
+$.fn.fixImagesByHeight = function() {
+	return this.each(function(){
+		var self = this;
+		$('img', this).load(function(img){
+			// alert('loaded'+i);
+			// console.log( this, $(this).outerWidth(), $(this).outerHeight(), $(self).outerHeight() );
+			var w = $(this).outerWidth();
+			var h = $(this).outerHeight();
+
+			var nh = $(self).outerHeight() - 80;
+			var nw = (w / h) * nh;
+
+			$(this).css({width: nw, height: nh});
+		})
+	})
 }
