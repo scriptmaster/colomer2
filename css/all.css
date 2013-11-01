@@ -79,7 +79,7 @@ body {
 	float: left;
 	height: 60px;
 	width: 80px;
-	background: url('../images/menu.png') no-repeat 0px -15px;
+	/*background: url('../images/menu.png') no-repeat 0px -15px;*/
 }
 
 .bulletimage{
