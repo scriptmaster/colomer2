@@ -79,7 +79,7 @@ function checkStorage() {
 function loadOffers(){
 	var offers = '';
 
-	loadSplash();
+	loadSplashIn();
 
 	$('.page').hide();
 
@@ -121,6 +121,28 @@ function loadSplash(){
 	var ss_image = '<img src="'+sss+'" width="'+$(window).width()+'" height="'+$(window).height()+'" />';
 	$('#splash').html(ss_image).show();
 }
+
+
+
+function loadSplashIn(){
+	var sss = '';
+
+	if($(window).width() < 320){
+	    sss = 'res/screen/android/'+page+'/screen-ldpi-portraitin-in.png';
+	}else if($(window).width() >= 320 || $(window).width() < 480){
+	    sss = 'res/screen/android/'+page+'/screen-mdpi-portrait-in.png';
+	}else if($(window).width() >= 480 || $(window).width() < 720){
+	    sss = 'res/screen/android/'+page+'/screen-hdpi-portrait-in.png';
+	}else if($(window).width() >= 720){
+	    sss = 'res/screen/android/'+page+'/screen-xhdpi-portrait-in.png';
+	}
+
+	var ss_image = '<img src="'+sss+'" width="'+$(window).width()+'" height="'+$(window).height()+'" />';
+	$('#splash').html(ss_image).show();
+}
+
+
+
 
 
 function findLocation() {
