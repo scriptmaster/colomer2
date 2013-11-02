@@ -160,7 +160,7 @@ function geoSuccess(position) {
 				page='denmark';
 			}
 
-			//loadOffers();
+			loadOffers();
 		}).error(loadOffers);
 }
 
