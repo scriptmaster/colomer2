@@ -79,11 +79,14 @@ function checkStorage() {
 function loadOffers(){
 	var offers = '';
 
-	loadSplashIn();
+	
 
-	$('.page').hide();
+
 
 	$.getJSON('http://system-hostings.dev.wiredelta.com/colomer/api/offers/app_offers?page='+page, function(resp){
+		$('.page').hide();
+		
+		loadSplashIn();
 
 		for(var i=0; i < resp.data.length; i++){
 			offers += '<li>';
@@ -157,7 +160,7 @@ function geoSuccess(position) {
 				page='denmark';
 			}
 
-			loadOffers();
+			//loadOffers();
 		}).error(loadOffers);
 }
 
