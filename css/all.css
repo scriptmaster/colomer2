@@ -118,22 +118,23 @@ body {
 
 /*Contact Page Styles Strarts Here*/
 .contactHeader{
-	font-family: "Myriad Pro", "lucida grande", Tahoma, Arial, sans-serif;
+	font-family:  "lucida grande", Tahoma, Arial, sans-serif;
 	color: #e8125f;
 	font-size: 19px;
 	padding-top: 3%;
-	padding-left: 17%;
+	padding-left: 13%;
+	font-weight: lighter;
 
 }
 .countryHeader{
 	padding-top: 7%;
-	padding-left: 17%;
+	padding-left: 13%;
 	color: #dfdfdf;
 
 }
 #page_contact ul {
 
-	padding-left: 17%;
+	padding-left: 13%;
 	line-height: 20px;
 }
 
