@@ -47,12 +47,13 @@ body {
 
 #menu ul li {
 	padding: 18px;
-	padding-left: 14px;
+	padding-left: 10px;
+	padding-right: 0px;
 	border-top: 1px solid #555;
 	border-bottom: 1px solid #000;
 	/*background: url('../images/listBackground.png') no-repeat left;*/
 	font-family: "Myriad Pro", "lucida grande", Tahoma, Arial, sans-serif;
-	font-size: 19.2px;
+	font-size: 16px;
 	cursor: pointer;
 	background: rgba(100,100,100,0.1);
 }
