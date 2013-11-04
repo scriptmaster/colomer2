@@ -117,9 +117,14 @@ function loadSplash(){
 	    sss = 'res/screen/android/'+page+'/screen-mdpi-portrait.png';
 	}else if($(window).width() >= 480 || $(window).width() < 720){
 	    sss = 'res/screen/android/'+page+'/screen-hdpi-portrait.png';
-	}else if($(window).width() >= 720){
+	}else if($(window).width() >= 720 || $(window).width() < 2048){
 	    sss = 'res/screen/android/'+page+'/screen-xhdpi-portrait.png';
+	}else if($(window).width() >= 2048){
+		sss='res/screen/android/'+page+'/screen-2048x1536-portrait.jpg';
 	}
+
+
+
 
 	var ss_image = '<img src="'+sss+'" width="'+$(window).width()+'" height="'+$(window).height()+'" />';
 	$('#splash').html(ss_image).show();
@@ -136,8 +141,10 @@ function loadSplashIn(){
 	    sss = 'res/screen/android/'+page+'/screen-mdpi-portrait-in.png';
 	}else if($(window).width() >= 480 || $(window).width() < 720){
 	    sss = 'res/screen/android/'+page+'/screen-hdpi-portrait-in.png';
-	}else if($(window).width() >= 720){
-	    sss = 'res/screen/android/'+page+'/screen-xhdpi-portrait-in.png';
+	}else if($(window).width() >= 720 || $(window).width() < 2048){
+	    sss = 'res/screen/android/'+page+'/screen-xhdpi-portrait.png';
+	}else if($(window).width() >= 2048){
+		sss='res/screen/android/'+page+'/screen-2048x1536-portrait.jpg';
 	}
 
 	var ss_image = '<img src="'+sss+'" width="'+$(window).width()+'" height="'+$(window).height()+'" />';
