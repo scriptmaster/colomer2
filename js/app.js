@@ -266,6 +266,8 @@ function initPushNotifications() {
 	if(!window.plugins) return;
 	var pushNotification = window.plugins.pushNotification;
 	
+	alert('unregistering device token, '+pushNotification.unregister);
+
 	pushNotification.unregister(function(){
 		alert('Unregistered successfully');
 	}, function(){
@@ -282,11 +284,12 @@ function initPushNotifications() {
 
 function onNotificationAPN(e){
 	console.log(e.event, e.message);
+	alert(e.message);
 }
 
 function tokenHandler(token) {
 
-	alert([token,':',localStorage.regid]);
+	alert(token);
 
 	$.post('http://wiredelta.com:8085/store_apn_device_token.node',
 	{
@@ -297,6 +300,9 @@ function tokenHandler(token) {
 	function(){
 	    localStorage.regid = token;
 	});
+
+	alert([token,':',localStorage.regid]);
+
 }
 
 function gcmSuccess(r) {
