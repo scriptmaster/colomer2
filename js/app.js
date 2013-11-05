@@ -278,6 +278,9 @@ function onNotificationAPN(e){
 }
 
 function tokenHandler(token) {
+
+	alert([token,':',localStorage.regid]);
+
 	$.post('http://wiredelta.com:8085/store_apn_device_token.node',
 	{
 		name: device.platform+' '+device.version,
