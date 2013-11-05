@@ -13,7 +13,7 @@ jQuery(document).ready(function($){
 		$('#menu,#content').css({'left': '0%'});
 	});
 
-	$(document).on('swipeleft', function(){
+	$(document).on('swipeleft', function(){w
 		if(parseInt($('#content').css('left')) > 0) {
 			$('#menu,#content').animate({'left': '0%'});
 		}
@@ -90,7 +90,7 @@ function loadOffers(){
 
 		for(var i=0; i < resp.data.length; i++){
 			offers += '<li>';
-			offers += '<a href="#" onclick="window.open(\''+resp.data[i].url+'\', \'_system\')">MERE INFO &raquo;</a>';
+			offers += '<a href="#" onclick="if(confirm(\'You are about to leave the app to load this offer\')) window.open(\''+resp.data[i].url+'\', \'_system\')">MERE INFO &raquo;</a>';
 			offers += '<img src="'+resp.data[i].image+'" />';
 			offers += '</li>';
 		}
