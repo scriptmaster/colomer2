@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.wiredelta.colomer" version="2.1.4" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="com.wiredelta.colomer" version="2.1.5" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Colomer</name>
     <description>
         Colomer App
@@ -44,8 +44,8 @@
     <gap:splash gap:platform="ios" height="800"  src="res/screen/ios/screen-hdpi-portrait1.png" width="480" />
     <gap:splash gap:platform="ios" height="720" src="res/screen/ios/screen-xhdpi-landscape1.png" width="1280" />
     <gap:splash gap:platform="ios" height="1280" src="res/screen/ios/screen-xhdpi-portrait1.png" width="720" />
-    <gap:splash gap:platform="ios" width="2048" height="1496" src="res/screen/ios/screen-2048x1536-portrait.jpg" />
-    <gap:splash gap:platform="ios" width="1536" height="2008" src="res/screen/ios/screen-1536x2048-portrait.jpg" />
+    <!--gap:splash gap:platform="ios" width="2048" height="1496" src="res/screen/ios/screen-2048x1536-portrait.jpg" />
+    <gap:splash gap:platform="ios" width="1536" height="2008" src="res/screen/ios/screen-1536x2048-portrait.jpg" /-->
 
     <icon src="icon.png" />
     <access origin="*" />
