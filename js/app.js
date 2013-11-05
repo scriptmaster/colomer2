@@ -13,7 +13,7 @@ jQuery(document).ready(function($){
 		$('#menu,#content').css({'left': '0%'});
 	});
 
-	$(document).on('swipeleft', function(){w
+	$(document).on('swipeleft', function(){
 		if(parseInt($('#content').css('left')) > 0) {
 			$('#menu,#content').animate({'left': '0%'});
 		}
