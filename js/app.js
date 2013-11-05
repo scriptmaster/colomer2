@@ -265,6 +265,13 @@ function initPushNotifications() {
 
 	if(!window.plugins) return;
 	var pushNotification = window.plugins.pushNotification;
+	
+	pushNotification.unregister(function(){
+		alert('Unregistered successfully');
+	}, function(){
+		alert('Unregister failed');
+		alert(JSON.stringify(arguments));
+	})
 
 	if(device.platform.toLowerCase()=="android"){
 		pushNotification.register(gcmSuccess, regError, {"senderID":"811599554332","ecb":"onNotificationGCM"});
