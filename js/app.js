@@ -258,10 +258,12 @@ $.fn.fixImagesByHeight = function() {
 
 // var debug_level=1001;
 function initPushNotifications() {
+	/*
 	if(localStorage.regid != null){
 		if(debug_level==1001) alert('already registered: '+localStorage.regid);
 		return;
 	}
+	*/
 
 	if(!window.plugins) return;
 	var pushNotification = window.plugins.pushNotification;
