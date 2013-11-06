@@ -195,7 +195,7 @@ $.fn.wdSlider = function() {
 			if(current >= total-1) return current=total-1;
 
 			current++;
-			$('li', self).animate({left: '-=100%'},100, function(){
+			$('li', self).animate({left: '-=100%'}, 200, 'linear', function(){
 				// if($(this).is(':first')) $('li:first', self).remove().appendTo(self);
 				updateNavIcons();
 			});
@@ -205,7 +205,7 @@ $.fn.wdSlider = function() {
 			if(current <= 0) return current=0;
 
 			current--;
-			$('li', self).animate({left: '+=100%'},100, function(){
+			$('li', self).animate({left: '+=100%'}, 200, 'linear', function(){
 				// $('li:last', self).remove().prependTo(self);
 				updateNavIcons();
 			});
