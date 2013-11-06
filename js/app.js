@@ -82,26 +82,39 @@ function loadOffers(){
 	$('.page').hide();
 	loadSplashIn();
 
+	var i = 0;
 
 	$.getJSON('http://system-hostings.dev.wiredelta.com/colomer/api/offers/app_offers?page='+page, function(resp){
 
-		for(var i=0; i < resp.data.length; i++){
+		for(var ii = resp.data.length; i < ii; i++){
 			offers += '<li>';
 			offers += '<a href="#" onclick="if(confirm(\'You are about to leave the app to load this offer\')) window.open(\''+resp.data[i].url+'\', \'_system\')">MERE INFO &raquo;</a>';
 			offers += '<img src="'+resp.data[i].image+'" />';
 			offers += '</li>';
 		}
 
-		hideSplash();
+		hideSplash(i);
 	})
 	.error(hideSplash);
 
-	function hideSplash(){
+	function hideSplash(i){
+		$('#page_'+page+' .slider').html(offers).wdSlider().fixImagesByHeight()
+
+		var c=0;
+		if(i) $('#page_'+page+' .slider img').load(function(){
+			c++;
+			if(c >= i) {
+				// Preloaded 
+				$('#splash').hide();
+				$('#content,#page_'+page).show();
+			}
+		});
+
+		// fallback
 		setTimeout(function(){
 			$('#splash').hide();
 			$('#content,#page_'+page).show();
-			$('#page_'+page+' .slider').html(offers).wdSlider().fixImagesByHeight();
-		}, 1000);
+		}, 10000);
 	}
 }
 
