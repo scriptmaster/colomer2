@@ -44,8 +44,10 @@
     <gap:splash gap:platform="ios" height="800"  src="res/screen/ios/screen-hdpi-portrait1.png" width="480" />
     <gap:splash gap:platform="ios" height="720" src="res/screen/ios/screen-xhdpi-landscape1.png" width="1280" />
     <gap:splash gap:platform="ios" height="1280" src="res/screen/ios/screen-xhdpi-portrait1.png" width="720" />
-    <gap:splash gap:platform="ios" width="2048" height="1496" src="res/screen/ios/screen-2048x1536-portrait.png" />
-    <gap:splash gap:platform="ios" width="1536" height="2008" src="res/screen/ios/screen-1536x2048-landscape.png" />
+    <gap:splash gap:platform="ios" width="2048" height="1496" src="res/screen/ios/screen-2048x1536.png" />
+    <gap:splash gap:platform="ios" width="1536" height="2008" src="res/screen/ios/screen-1536x2048.png" />
+    <gap:splash gap:platform="ios" width="2048" height="1536" src="res/screen/ios/screen-2048x1536.png" />
+    <gap:splash gap:platform="ios" width="1536" height="2048" src="res/screen/ios/screen-1536x2048.png" />
 
     <icon src="icon.png" />
     <access origin="*" />
