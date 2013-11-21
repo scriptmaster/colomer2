@@ -258,7 +258,7 @@ $.fn.fixImagesByHeight = function() {
 			var nh = $(self).outerHeight() - 80;
 			var nw = (w / h) * nh;
 
-			$(this).css({width: nw, height: nh});
+			$(this).css({width: nw});
 		})
 	})
 }
