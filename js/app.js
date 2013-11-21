@@ -230,7 +230,7 @@ $.fn.wdSlider = function() {
 		};
 
 		$('.slider-nav-icons', parent).html(slider_nav_icons)
-			.css('margin-left', -$('.slider-nav-icons', parent).outerWidth()/3)
+			.css('margin-left', -$('.slider-nav-icons', parent).outerWidth())
 			.find('.slider-nav-circle:first').addClass('current-slide')
 
 		$('.slider-nav-icons .slider-nav-circle', parent).click(function(){
