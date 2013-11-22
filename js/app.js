@@ -89,7 +89,7 @@ function loadOffers(){
 		for(var ii = resp.data.length; i < ii; i++){
 			offers += '<li>';
 			//offers += '<a href="#" onclick="if(confirm(\'You are about to leave the app to load this offer\')) window.open(\''+resp.data[i].url+'\', \'_system\')">MERE INFO &raquo;</a>';
-			offers += '<a href="#" onclick=" window.open(\''+resp.data[i].url+'\', \'_system\')">MERE INFO &raquo;</a>';
+			offers += '<a href="#" onclick=" window.open(\''+resp.data[i].url+'\', \'_system\')">MORE INFO &raquo;</a>';
 			offers += '<img src="'+resp.data[i].image+'" />';
 			offers += '</li>';
 		}
